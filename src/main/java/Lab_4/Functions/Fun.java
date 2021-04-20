@@ -75,67 +75,21 @@ public class Fun {
         double min_q = square_deviation(points,dataSetChart[0][0],dataSetChart[0][1],0,1);
         int num_selected_f = 1;
 
-        if(min_q > square_deviation(points,dataSetChart[1][0],dataSetChart[1][1],0,2)) {
-            min_q = square_deviation(points, dataSetChart[1][0], dataSetChart[1][1], 0, 2);
-            num_selected_f = 2;
-        }
-        if(min_q > square_deviation(points,dataSetChart[2][0],dataSetChart[2][1],0,3)) {
-            min_q = square_deviation(points, dataSetChart[2][0], dataSetChart[2][1], 0, 3);
-            num_selected_f = 3;
+        for(int i = 1; i <= 5; i++){
+            if(min_q > square_deviation(points,dataSetChart[i-1][0],dataSetChart[i-1][1],dataSetChart[i-1][2],i)) {
+                min_q = square_deviation(points, dataSetChart[i-1][0], dataSetChart[i-1][1], dataSetChart[i-1][2], i);
+                num_selected_f = i;
+            }
         }
 
-        if(min_q > square_deviation(points,dataSetChart[3][0],dataSetChart[3][1],0,4)) {
-            min_q = square_deviation(points, dataSetChart[3][0], dataSetChart[3][1], 0, 4);
-            num_selected_f = 4;
-        }
-
-        if(min_q > square_deviation(points,dataSetChart[4][0],dataSetChart[4][1],dataSetChart[4][2],5)) {
-            min_q = square_deviation(points, dataSetChart[4][0], dataSetChart[4][1], dataSetChart[4][2], 5);
-            num_selected_f = 5;
-        }
-
-        if(num_selected_f == 1){
-            System.out.println("Наилучшая аппроксимирующая функция №"+num_selected_f+" Fi = ax+b");
-            System.out.println("a = " + dataSetChart[0][0]);
-            System.out.println("b = " + dataSetChart[0][1]);
-            System.out.println("S = " + deviation_measure(points,dataSetChart[0][0],dataSetChart[0][1],
-                    0,1));
-            System.out.println("q = " + min_q);
-            System.out.println("R = " + getR(points,dataSetChart[0][0],dataSetChart[0][1],
-                    0,1));
-        }else if(num_selected_f == 2){
-            System.out.println("Наилучшая аппроксимирующая функция №"+num_selected_f+" Fi = ax^b");
-            System.out.println("a = " + dataSetChart[1][0]);
-            System.out.println("b = " + dataSetChart[1][1]);
-            System.out.println("S = " + deviation_measure(points,dataSetChart[1][0],dataSetChart[1][1],0,2));
-            System.out.println("q = " + min_q);
-            System.out.println("R = " + getR(points,dataSetChart[1][0],dataSetChart[1][1],0,2));
-        }else if(num_selected_f == 3){
-            System.out.println("Наилучшая аппроксимирующая функция №"+num_selected_f+" Fi = ae^bx");
-            System.out.println("a = " + dataSetChart[2][0]);
-            System.out.println("b = " + dataSetChart[2][1]);
-            System.out.println("S = " + deviation_measure(points,dataSetChart[2][0],dataSetChart[2][1],0,3));
-            System.out.println("q = " + min_q);
-            System.out.println("R = " + getR(points,dataSetChart[2][0],dataSetChart[2][1],0,3));
-        }else if(num_selected_f == 4){
-            System.out.println("Наилучшая аппроксимирующая функция №"+num_selected_f+" Fi = a*ln(x)+b");
-            System.out.println("a = " + dataSetChart[3][0]);
-            System.out.println("b = " + dataSetChart[3][1]);
-            System.out.println("S = " + deviation_measure(points,dataSetChart[3][0],dataSetChart[3][1],0,4));
-            System.out.println("q = " + min_q);
-            System.out.println("R = " + getR(points,dataSetChart[3][0],dataSetChart[3][1],0,4));
-        }else{
-            System.out.println("Наилучшая аппроксимирующая функция №"+num_selected_f+" Fi = ax^2+bx+c");
-            System.out.println("a = " + dataSetChart[4][0]);
-            System.out.println("b = " + dataSetChart[4][1]);
-            System.out.println("c = " + dataSetChart[4][2]);
-            System.out.println("S = " + deviation_measure(points,dataSetChart[4][0],dataSetChart[4][1],
-                    dataSetChart[4][2],5));
-            System.out.println("q = " + min_q);
-            System.out.println("R = " + getR(points,dataSetChart[4][0],dataSetChart[4][1],
-                    dataSetChart[4][2],5));
-        }
-
+        System.out.println("Наилучшая аппроксимирующая функция №"+num_selected_f+" Fi = ax+b");
+        System.out.println("a = " + dataSetChart[num_selected_f-1][0]);
+        System.out.println("b = " + dataSetChart[num_selected_f-1][1]);
+        System.out.println("S = " + deviation_measure(points,dataSetChart[num_selected_f-1][0],
+                dataSetChart[num_selected_f-1][1],dataSetChart[num_selected_f-1][2],num_selected_f));
+        System.out.println("q = " + min_q);
+        System.out.println("R = " + getR(points,dataSetChart[num_selected_f-1][0],dataSetChart[num_selected_f-1][1],
+                dataSetChart[num_selected_f-1][2],num_selected_f));
     }
 
 }

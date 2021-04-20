@@ -44,11 +44,6 @@ public class InputConsole {
         }
     }
 
-
-
-
-
-
     private int inN(){
         while (true) {
             System.out.print("Введите колиичество точек: ");
